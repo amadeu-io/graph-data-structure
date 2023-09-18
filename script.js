@@ -43,6 +43,17 @@ class Graph {
       return [];
     }
   }
+
+  // checks if there's an edge (connection) between two nodes
+  hasEdge(node1, node2) {
+    if (this.nodes.has(node1)) {
+      // includes() method checks whether a value exists within an array, returns Boolean
+      return this.nodes.get(node1).includes(node2);
+    } else {
+      console.log("Node not found in the graph.");
+      return false;
+    }
+  }
 }
 
 // example usage:
@@ -51,12 +62,18 @@ const graph = new Graph();
 // create nodes
 graph.addNode("A");
 graph.addNode("B");
+graph.addNode("C");
 
-// create an edge between nodes
+// connect nodes
 graph.addEdge("A", "B");
+graph.addEdge("B", "C");
 
 // get neighbors
-console.log(graph.getNeighbors("B"));
+console.log(graph.getNeighbors("B")); // 'C'
+
+// check edges
+console.log(graph.hasEdge("A", "B")); // true
+console.log(graph.hasEdge("B", "A")); // false
 
 // print the graph
 graph.printGraph();
