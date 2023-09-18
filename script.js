@@ -18,7 +18,7 @@ class Graph {
   addEdge(node1, node2) {
     // makes sure node1 & node2 exist
     if (this.nodes.has(node1) && this.nodes.has(node2)) {
-      // get retreives the value of the key-value pair
+      // get(key): retreives the value of the key-value pair
       // in this case, it's a list containing the linked nodes
       // in wich node2 is added
       this.nodes.get(node1).push(node2);
@@ -33,6 +33,16 @@ class Graph {
       console.log(`${node} -> [${neighborString}]`);
     }
   }
+
+  // returns an array of a node's neighbors (value) of a given node, if it exists
+  getNeighbors(node) {
+    if (this.nodes.has(node)) {
+      return this.nodes.get(node);
+    } else {
+      console.log("Node not found in the graph.");
+      return [];
+    }
+  }
 }
 
 // example usage:
@@ -44,6 +54,9 @@ graph.addNode("B");
 
 // create an edge between nodes
 graph.addEdge("A", "B");
+
+// get neighbors
+console.log(graph.getNeighbors("B"));
 
 // print the graph
 graph.printGraph();
