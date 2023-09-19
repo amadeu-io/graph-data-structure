@@ -54,6 +54,29 @@ class Graph {
       return false;
     }
   }
+
+  removeNode(nodeToRemove) {
+    // find & remove the nodeToRemove
+    // delete(key): removes a key-value pair from the map
+    if (this.nodes.has(nodeToRemove)) {
+      this.nodes.delete(nodeToRemove);
+
+      // remove any edges connected to the node
+      // loop iterates over the whole map's entries (items)
+      // at each iteration, node is the key and neighbors is the value
+      for (const [node, neighbors] of this.nodes.entries()) {
+        // finds the index of the nodeToRemove in the array of neighbors
+        const index = neighbors.indexOf(nodeToRemove);
+
+        // if the nodeToRemove exists in the array of neighbors (it's not -1), remove it
+        if (index !== -1) {
+          neighbors.splice(index, 1);
+        }
+      }
+    } else {
+      console.log("Node not found in the graph.");
+    }
+  }
 }
 
 // example usage:
@@ -74,6 +97,12 @@ console.log(graph.getNeighbors("B")); // 'C'
 // check edges
 console.log(graph.hasEdge("A", "B")); // true
 console.log(graph.hasEdge("B", "A")); // false
+
+// print the graph
+graph.printGraph();
+
+// remove a node
+graph.removeNode("B");
 
 // print the graph
 graph.printGraph();
