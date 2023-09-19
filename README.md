@@ -5,9 +5,7 @@
 
 ### About 📖
 
-A data graph is a data structure used to represent and model relationships between various pieces of data. It consists of nodes and edges, where nodes represent data points, and edges represent the connections between them.
-
-Graphs can be directed, where each edge has a direction, or indirected, where they do not.
+A data graph is a data structure used to represent and model relationships between various pieces of data. It consists of nodes and edges, where nodes represent data points, and edges represent the connections between them. Graphs can be directed, where each edge has a direction, or indirected, where they do not.
 
 Data graphs have many real world applications, like organizing users in a social network, modeling user-item interactions for personalized recommendations, analizing website structures and page relationships, mapping road systems, flight routes, public transportation etc.
 
