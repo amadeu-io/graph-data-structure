@@ -77,6 +77,25 @@ class Graph {
       console.log("Node not found in the graph.");
     }
   }
+
+  removeEdge(node1, node2) {
+    if (this.nodes.has(node1)) {
+      // list of neighbors of node1
+      const neighbors = this.nodes.get(node1);
+
+      // index of the node2 in the neighbors array of node1
+      const index = neighbors.indexOf(node2);
+
+      // if the index is not -1 (it exists), remove it
+      if (index !== -1) {
+        neighbors.splice(index, 1);
+      } else {
+        console.log("Edge not found between the nodes.");
+      }
+    } else {
+      console.log("Node not found in the graph.");
+    }
+  }
 }
 
 // example usage:
@@ -101,8 +120,11 @@ console.log(graph.hasEdge("B", "A")); // false
 // print the graph
 graph.printGraph();
 
+// remove edge
+graph.removeEdge("B", "C");
+
 // remove a node
-graph.removeNode("B");
+//graph.removeNode("B");
 
 // print the graph
 graph.printGraph();
