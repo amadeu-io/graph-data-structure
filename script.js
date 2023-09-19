@@ -55,6 +55,7 @@ class Graph {
     }
   }
 
+  // remove edge (connection) between node1 and node2
   removeEdge(node1, node2) {
     if (this.nodes.has(node1)) {
       // list of neighbors of node1
@@ -74,6 +75,7 @@ class Graph {
     }
   }
 
+  // remove a node from the graph
   removeNode(nodeToRemove) {
     // find & remove the nodeToRemove
     // delete(key): removes a key-value pair from the map
