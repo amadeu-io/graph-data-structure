@@ -55,29 +55,6 @@ class Graph {
     }
   }
 
-  removeNode(nodeToRemove) {
-    // find & remove the nodeToRemove
-    // delete(key): removes a key-value pair from the map
-    if (this.nodes.has(nodeToRemove)) {
-      this.nodes.delete(nodeToRemove);
-
-      // remove any edges connected to the node
-      // loop iterates over the whole map's entries (items)
-      // at each iteration, node is the key and neighbors is the value
-      for (const [node, neighbors] of this.nodes.entries()) {
-        // finds the index of the nodeToRemove in the array of neighbors
-        const index = neighbors.indexOf(nodeToRemove);
-
-        // if the nodeToRemove exists in the array of neighbors (it's not -1), remove it
-        if (index !== -1) {
-          neighbors.splice(index, 1);
-        }
-      }
-    } else {
-      console.log("Node not found in the graph.");
-    }
-  }
-
   removeEdge(node1, node2) {
     if (this.nodes.has(node1)) {
       // list of neighbors of node1
@@ -91,6 +68,25 @@ class Graph {
         neighbors.splice(index, 1);
       } else {
         console.log("Edge not found between the nodes.");
+      }
+    } else {
+      console.log("Node not found in the graph.");
+    }
+  }
+
+  removeNode(nodeToRemove) {
+    // find & remove the nodeToRemove
+    // delete(key): removes a key-value pair from the map
+    if (this.nodes.has(nodeToRemove)) {
+      this.nodes.delete(nodeToRemove);
+
+      // remove any edges connected to the node
+      // loop iterates over the whole map's entries (nodes)
+      // at each iteration, node is the key and neighbors is the value
+      for (const [node, neighbors] of this.nodes.entries()) {
+        if (neighbors.includes(nodeToRemove)) {
+          this.removeEdge(node, nodeToRemove);
+        }
       }
     } else {
       console.log("Node not found in the graph.");
@@ -121,10 +117,12 @@ console.log(graph.hasEdge("B", "A")); // false
 graph.printGraph();
 
 // remove edge
-graph.removeEdge("B", "C");
+//graph.removeEdge("B", "C");
+
+console.log("-----");
 
 // remove a node
-//graph.removeNode("B");
+graph.removeNode("C");
 
 // print the graph
 graph.printGraph();
