@@ -5,11 +5,15 @@
 
 ### About 📖
 
-A data graph is a data structure used to represent and model relationships between various pieces of data. It consists of nodes and edges, where nodes represent entities or data points, and edges represent the connections or relationships between these entities.
+A data graph is a data structure used to represent and model relationships between various pieces of data. It consists of nodes and edges, where nodes represent data points, and edges represent the connections between them.
+
+Graphs can be directed, where each edge has a direction, or indirected, where they do not.
+
+Data graphs have many real world applications, like organizing users in a social network, modeling user-item interactions for personalized recommendations, analizing website structures and page relationships, mapping road systems, flight routes, public transportation etc.
 
 ### Description 📚
 
-This repo implements a Graph Data Structure in TypeScript, with some methods to modify and traverse the graph. A JavaScript version is also provided.
+This repo implements a directed Graph Data Structure in TypeScript, with some methods to modify and traverse the graph. A JavaScript version is also provided.
 
 ### Resources Used 💡
 
@@ -24,5 +28,3 @@ This repo implements a Graph Data Structure in TypeScript, with some methods to 
 - ➖ `remove(data)`: Removes all child nodes of a given node with matching data.
 
 ### Usage 🖊️
-
-
