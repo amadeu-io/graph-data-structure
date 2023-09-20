@@ -202,14 +202,19 @@ console.log(graph.getNeighbors("B")); // 'D'
 console.log(graph.hasEdge("A", "B")); // true
 console.log(graph.hasEdge("B", "A")); // false
 
-// remove a node
-//graph.removeNode("C");
-//graph.printGraph();
+// remove a node (notice how "C" is effectively removed from "A" neighbors list as well)
+graph.removeNode("C");
+graph.printGraph();
 
-// depth first traversal
+// re-add the node and the previous edge
+graph.addNode("C");
+graph.addEdge("A", "C");
+graph.printGraph();
+
+// depth-first traversal
 console.log("DFT:");
 graph.depthFirstTraversal("A", print);
 
-// breadth first traversal
+// breadth-first traversal
 console.log("BFT:");
 graph.breadthFirstTraversal("A", print);
