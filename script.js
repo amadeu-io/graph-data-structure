@@ -130,6 +130,45 @@ class Graph {
       console.log("Node not found in the graph.");
     }
   }
+
+  // perform a breath first traveral from a starting node
+  breadthFirstTraversal(startNode, visitCallback) {
+    // keeps track of visited nodes
+    const visited = new Set();
+
+    // initialize empty queue to mantain the order of the nodes visited
+    const queue = [];
+
+    // if the starting node exists, start the traversal
+    if (this.nodes.has(startNode)) {
+      // add starting node to queue and visited to iniciate the traversal
+      queue.push(startNode);
+      visited.add(startNode);
+
+      // loop that iterates through queue, loop ends when all nodes have been visited
+      while (queue.length > 0) {
+        // dequeue current node
+        const currentNode = queue.shift();
+
+        // process currentnode
+        visitCallback(currentNode);
+
+        // retreive neighbors of current node
+        const neighbors = this.getNeighbors(currentNode);
+
+        // explore all neighbors of current node that have not been visited yet, add them
+        // to queue to be visited and mark as visited
+        for (const neighbor of neighbors) {
+          if (!visited.has(neighbor)) {
+            queue.push(neighbor);
+            visited.add(neighbor);
+          }
+        }
+      }
+    } else {
+      console.log("Node not found in the graph.");
+    }
+  }
 }
 
 // print callback
@@ -165,4 +204,9 @@ console.log(graph.hasEdge("B", "A")); // false
 //graph.printGraph();
 
 // depth first traversal
+console.log("DFT:");
 graph.depthFirstTraversal("A", print);
+
+// breadth first traversal
+console.log("BFT:");
+graph.breadthFirstTraversal("A", print);
