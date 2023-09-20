@@ -145,7 +145,7 @@ class Graph {
       queue.push(startNode);
       visited.add(startNode);
 
-      // loop that iterates through queue, loop ends when all nodes have been visited
+      // loop that iterates through queue, as long as there are items on it
       while (queue.length > 0) {
         // dequeue current node
         const currentNode = queue.shift();
@@ -157,13 +157,16 @@ class Graph {
         const neighbors = this.getNeighbors(currentNode);
 
         // explore all neighbors of current node that have not been visited yet, add them
-        // to queue to be visited and mark as visited
+        // to queue to be visited and mark as visibecomested
         for (const neighbor of neighbors) {
           if (!visited.has(neighbor)) {
             queue.push(neighbor);
             visited.add(neighbor);
           }
         }
+
+        // the iteration keeps going, visiting all nodes in the queue until all
+        // have been visited and the queue is empty
       }
     } else {
       console.log("Node not found in the graph.");
