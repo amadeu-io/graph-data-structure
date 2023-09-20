@@ -84,7 +84,7 @@ class Graph {
 
       // remove any edges connected to the node
       // loop iterates over the whole map's entries (nodes)
-      // at each iteration, node is the key and neighbors is the value
+      // at each iteration, node is the key and neighbors is the value of each node
       for (const [node, neighbors] of this.nodes.entries()) {
         if (neighbors.includes(nodeToRemove)) {
           this.removeEdge(node, nodeToRemove);
@@ -94,6 +94,47 @@ class Graph {
       console.log("Node not found in the graph.");
     }
   }
+
+  // perform a depth first traveral from a starting node
+  depthFirstTraversal(startNode, visitCallback) {
+    // a set is similar to an array, but it contains only unique values
+    // and it's elements don't have an order
+    // visited keeps track of all the visited nodes, ensuring the nodes are not
+    // visited more than once during the traversal
+    const visited = new Set();
+
+    // helper recursive function that traverses the graph
+    const dfs = (node) => {
+      // add current node to visited set (mark as visited)
+      visited.add(node);
+
+      // process current node
+      visitCallback(node);
+
+      // retreive neighbors of current node
+      const neighbors = this.getNeighbors(node);
+
+      // iterate through all the neighbors of current node
+      // navigate to any neighbors that have not been visited (not in visited set)
+      for (const neighbor of neighbors) {
+        if (!visited.has(neighbor)) {
+          dfs(neighbor);
+        }
+      }
+    };
+
+    // call dfs from the specified starting node, if it exists
+    if (this.nodes.has(startNode)) {
+      dfs(startNode);
+    } else {
+      console.log("Node not found in the graph.");
+    }
+  }
+}
+
+// print callback
+function print(node) {
+  console.log(node);
 }
 
 // example usage:
@@ -103,28 +144,25 @@ const graph = new Graph();
 graph.addNode("A");
 graph.addNode("B");
 graph.addNode("C");
+graph.addNode("D");
 
 // connect nodes
 graph.addEdge("A", "B");
-graph.addEdge("B", "C");
+graph.addEdge("A", "C");
+graph.addEdge("B", "D");
+
+graph.printGraph();
 
 // get neighbors
-console.log(graph.getNeighbors("B")); // 'C'
+console.log(graph.getNeighbors("B")); // 'D'
 
 // check edges
 console.log(graph.hasEdge("A", "B")); // true
 console.log(graph.hasEdge("B", "A")); // false
 
-// print the graph
-graph.printGraph();
-
-// remove edge
-//graph.removeEdge("B", "C");
-
-console.log("-----");
-
 // remove a node
-graph.removeNode("C");
+//graph.removeNode("C");
+//graph.printGraph();
 
-// print the graph
-graph.printGraph();
+// depth first traversal
+graph.depthFirstTraversal("A", print);

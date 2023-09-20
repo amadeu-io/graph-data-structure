@@ -11,7 +11,7 @@ Data graphs have many real world applications, like organizing users in a social
 
 ### Description 📚
 
-This repo implements a directed Graph Data Structure in TypeScript, with some methods to modify and traverse the graph. A JavaScript version is also provided.
+This repo implements a Directed Graph Data Structure in TypeScript, with some methods to modify and traverse the graph. A JavaScript version is also provided.
 
 ### Resources Used 💡
 
