@@ -217,7 +217,7 @@ class Graph {
     // mark the startNode as visited
     parentMap.set(startNode, null);
 
-    // loop that performs a bfs and keeps track of a node/parent map
+    // loop that performs a bfs and keeps track of a node - parent map throughout the path
     while (queue.length > 0) {
       const currentNode = queue.shift();
 
@@ -284,7 +284,6 @@ graph.addEdge("B", "D");
 graph.addEdge("C", "E");
 graph.addEdge("D", "E");
 graph.addEdge("E", "F");
-//graph.addEdge("B", "F");
 
 // print graph
 graph.printGraph();
