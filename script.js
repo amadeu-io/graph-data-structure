@@ -157,7 +157,7 @@ class Graph {
         const neighbors = this.getNeighbors(currentNode);
 
         // explore all neighbors of current node that have not been visited yet, add them
-        // to queue to be visited and mark as visibecomested
+        // to queue to be visited and mark as visited
         for (const neighbor of neighbors) {
           if (!visited.has(neighbor)) {
             queue.push(neighbor);
@@ -197,6 +197,68 @@ class Graph {
     // the size of the visited set)
     return visited.size === this.nodes.size;
   }
+
+  shortestPath(startNode, endNode) {
+    // if either the startNode or endNode doesn't exist, return null
+    if (!this.nodes.has(startNode) || !this.nodes.has(endNode)) {
+      return null;
+    }
+
+    // create a queue to perform bfs
+    const queue = [];
+
+    // create a map to track the parent node for each node in the path
+    const parentMap = new Map();
+
+    // initialize the queue with the startNode
+    queue.push(startNode);
+    graph.addNode("B", "F");
+
+    // mark the startNode as visited
+    parentMap.set(startNode, null);
+
+    // loop that performs a bfs and keeps track of a node/parent map
+    while (queue.length > 0) {
+      const currentNode = queue.shift();
+
+      // the bfs has reached the destination node
+      if (currentNode === endNode) {
+        // will be used to store the reconstructed shortest path
+        const path = [];
+
+        let node = endNode;
+
+        // iterate through the parent map and reconstruct entire
+        // path from end to beginning
+        while (node !== null) {
+          // add node to the end of the path
+          path.unshift(node);
+
+          // set node variable to be the parent of the node
+          node = parentMap.get(node);
+        }
+
+        return path;
+      }
+
+      // retreive neighbors of current node
+      const neighbors = this.getNeighbors(currentNode);
+
+      // iterate through all neighbors
+      for (const neighbor of neighbors) {
+        if (!parentMap.has(neighbor)) {
+          // mark the neighbor as visited and set its parent to the current node
+          // key: neighbor -> visited neighbor
+          // value: currentNode -> parent from which the neighbor has been visited
+          parentMap.set(neighbor, currentNode);
+          queue.push(neighbor);
+        }
+      }
+    }
+
+    // if no path exists between startNode and endNode, return null
+    return null;
+  }
 }
 
 // print callback
@@ -207,42 +269,25 @@ function print(node) {
 // example usage:
 const graph = new Graph();
 
-// create nodes
+// add nodes to the graph
 graph.addNode("A");
 graph.addNode("B");
 graph.addNode("C");
 graph.addNode("D");
+graph.addNode("E");
+graph.addNode("F");
 
-// connect nodes
+// add edges to create a sample graph
 graph.addEdge("A", "B");
-graph.addEdge("A", "C");
+graph.addEdge("B", "C");
 graph.addEdge("B", "D");
+graph.addEdge("C", "E");
+graph.addEdge("D", "E");
+graph.addEdge("E", "F");
+//graph.addEdge("B", "F");
 
+// print graph
 graph.printGraph();
 
-// get neighbors
-console.log(graph.getNeighbors("B")); // 'D'
-
-// check edges
-console.log(graph.hasEdge("A", "B")); // true
-console.log(graph.hasEdge("B", "A")); // false
-
-// remove a node (notice how "C" is effectively removed from "A" neighbors list as well)
-graph.removeNode("C");
-graph.printGraph();
-
-// re-add the node and the previous edge
-graph.addNode("C");
-graph.addEdge("A", "C");
-graph.printGraph();
-
-// depth-first traversal
-console.log("DFT:");
-graph.depthFirstTraversal("A", print);
-
-// breadth-first traversal
-console.log("BFT:");
-graph.breadthFirstTraversal("A", print);
-
-// is connected
-console.log(graph.isConnected()); // true
+// find shortest path
+console.log(graph.shortestPath("A", "F"));
