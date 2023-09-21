@@ -213,7 +213,6 @@ class Graph {
 
     // initialize the queue with the startNode
     queue.push(startNode);
-    graph.addNode("B", "F");
 
     // mark the startNode as visited
     parentMap.set(startNode, null);
