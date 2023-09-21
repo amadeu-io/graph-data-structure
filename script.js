@@ -198,6 +198,7 @@ class Graph {
     return visited.size === this.nodes.size;
   }
 
+  // finds the shortest path between two nodes
   shortestPath(startNode, endNode) {
     // if either the startNode or endNode doesn't exist, return null
     if (!this.nodes.has(startNode) || !this.nodes.has(endNode)) {
