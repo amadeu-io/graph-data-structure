@@ -208,20 +208,20 @@ class Graph {
     // create a queue to perform bfs
     const queue = [];
 
-    // create a map to track the parent node for each node in the path
+    // create a map to track the node - parent map for each node in the path
     const parentMap = new Map();
 
     // initialize the queue with the startNode
     queue.push(startNode);
 
-    // mark the startNode as visited
+    // mark the startNode as the first node in parentMap, that has no parent
     parentMap.set(startNode, null);
 
     // loop that performs a bfs and keeps track of a node - parent map throughout the path
     while (queue.length > 0) {
       const currentNode = queue.shift();
 
-      // the bfs has reached the destination node
+      // the end: the bfs has reached the destination node
       if (currentNode === endNode) {
         // will be used to store the reconstructed shortest path
         const path = [];
@@ -246,10 +246,13 @@ class Graph {
 
       // iterate through all neighbors
       for (const neighbor of neighbors) {
+        // has(key) checks if a key exists in the map parentMap, if it doesn't
+        // it means that neighbor hasn't been visited, and the if block executes
         if (!parentMap.has(neighbor)) {
-          // mark the neighbor as visited and set its parent to the current node
-          // key: neighbor -> visited neighbor
-          // value: currentNode -> parent from which the neighbor has been visited
+          // navigate to that neighbor, by pushing it into the queue
+          // and update the parentMap
+          // neighbor -> new visited node
+          // currentNode -> node the neighbor is visited from, which becomes the parent
           parentMap.set(neighbor, currentNode);
           queue.push(neighbor);
         }
