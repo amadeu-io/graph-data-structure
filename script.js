@@ -27,6 +27,46 @@ class Graph {
     }
   }
 
+  // remove a node from the graph
+  removeNode(nodeToRemove) {
+    // find & remove the nodeToRemove
+    // delete(key): removes a key-value pair from the map
+    if (this.nodes.has(nodeToRemove)) {
+      this.nodes.delete(nodeToRemove);
+
+      // remove any edges connected to the node
+      // loop iterates over the whole map's entries (nodes)
+      // at each iteration, node is the key and neighbors is the value of each node
+      for (const [node, neighbors] of this.nodes.entries()) {
+        if (neighbors.includes(nodeToRemove)) {
+          this.removeEdge(node, nodeToRemove);
+        }
+      }
+    } else {
+      console.log("Node not found in the graph.");
+    }
+  }
+
+  // remove edge (connection) between node1 and node2
+  removeEdge(node1, node2) {
+    if (this.nodes.has(node1)) {
+      // list of neighbors of node1
+      const neighbors = this.nodes.get(node1);
+
+      // index of the node2 in the neighbors array of node1
+      const index = neighbors.indexOf(node2);
+
+      // if the index is not -1 (it exists), remove it
+      if (index !== -1) {
+        neighbors.splice(index, 1);
+      } else {
+        console.log("Edge not found between the nodes.");
+      }
+    } else {
+      console.log("Node not found in the graph.");
+    }
+  }
+
   printGraph() {
     for (const [node, neighbors] of this.nodes.entries()) {
       const neighborString = neighbors.join(", ");
@@ -55,44 +95,29 @@ class Graph {
     }
   }
 
-  // remove edge (connection) between node1 and node2
-  removeEdge(node1, node2) {
-    if (this.nodes.has(node1)) {
-      // list of neighbors of node1
-      const neighbors = this.nodes.get(node1);
-
-      // index of the node2 in the neighbors array of node1
-      const index = neighbors.indexOf(node2);
-
-      // if the index is not -1 (it exists), remove it
-      if (index !== -1) {
-        neighbors.splice(index, 1);
-      } else {
-        console.log("Edge not found between the nodes.");
-      }
-    } else {
-      console.log("Node not found in the graph.");
+  // check if the graph is connected (no isolated nodes)
+  isConnected() {
+    // edge case: if the graph is empty, consider it connected
+    if (this.nodes.size === 0) {
+      return true;
     }
-  }
 
-  // remove a node from the graph
-  removeNode(nodeToRemove) {
-    // find & remove the nodeToRemove
-    // delete(key): removes a key-value pair from the map
-    if (this.nodes.has(nodeToRemove)) {
-      this.nodes.delete(nodeToRemove);
+    // pick the first node as a starting point
+    const startNode = this.nodes.keys().next().value;
 
-      // remove any edges connected to the node
-      // loop iterates over the whole map's entries (nodes)
-      // at each iteration, node is the key and neighbors is the value of each node
-      for (const [node, neighbors] of this.nodes.entries()) {
-        if (neighbors.includes(nodeToRemove)) {
-          this.removeEdge(node, nodeToRemove);
-        }
-      }
-    } else {
-      console.log("Node not found in the graph.");
-    }
+    // keeps track of visited nodes
+    const visited = new Set();
+
+    // perform a breadth-first traversal starting from the first node & add to visited
+    this.breadthFirstTraversal(startNode, (node) => {
+      visited.add(node);
+    });
+
+    // the traversal can only visit the nodes that are connected
+    // so the only way that the graph is connected is if the traversal has visited
+    // all nodes present in the graph (the size of the nodes set is the same as
+    // the size of the visited set)
+    return visited.size === this.nodes.size;
   }
 
   // perform a depth first traveral from a starting node
@@ -171,31 +196,6 @@ class Graph {
     } else {
       console.log("Node not found in the graph.");
     }
-  }
-
-  // check if the graph is connected
-  isConnected() {
-    // edge case: if the graph is empty, consider it connected
-    if (this.nodes.size === 0) {
-      return true;
-    }
-
-    // pick the first node as a starting point
-    const startNode = this.nodes.keys().next().value;
-
-    // keeps track of visited nodes
-    const visited = new Set();
-
-    // perform a breadth-first traversal starting from the first node & add to visited
-    this.breadthFirstTraversal(startNode, (node) => {
-      visited.add(node);
-    });
-
-    // the traversal can only visit the nodes that are connected
-    // so the only way that the graph is connected is if the traversal has visited
-    // all nodes present in the graph (the size of the nodes set is the same as
-    // the size of the visited set)
-    return visited.size === this.nodes.size;
   }
 
   // finds the shortest path between two nodes
@@ -291,5 +291,21 @@ graph.addEdge("E", "F");
 // print graph
 graph.printGraph();
 
+// get neighbors
+console.log(graph.getNeighbors("B")); // [ 'C', 'D' ]
+
+// has edge
+console.log(graph.hasEdge("A", "B")); // true
+console.log(graph.hasEdge("A", "E")); // false
+
+// is connected
+console.log(graph.isConnected()); // true
+
+// depth first traversal (dfs)
+graph.depthFirstTraversal("A", print); // A, B, C, E, F, D
+
+// breadth first traversal (bfs)
+graph.breadthFirstTraversal("A", print); // A, B, C, D, E, F
+
 // shortest path
-console.log(graph.shortestPath("A", "F"));
+console.log(graph.shortestPath("A", "F")); // A, B, C, E, F
