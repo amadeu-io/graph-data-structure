@@ -33,9 +33,9 @@ This repo implements a directed, unweighted Graph Data Structure in TypeScript, 
 
 - 📜 `printGraph()`: Utility method to print the entire graph.
 
-- 🌐 `getNeighbors(node)`: Retrieves all neighbor nodes of a given node.
+- 🏡 `getNeighbors(node)`: Retrieves all neighbor nodes of a given node.
 
-- ❓ `hasEdge(node1, node2)`: Checks if there is an edge (connection) between two nodes.
+- ➡️ `hasEdge(node1, node2)`: Checks if there is an edge (connection) between two nodes.
 
 - 🌐 `isConnected()`: Checks if the graph is connected.
 

@@ -288,6 +288,8 @@ graph.addEdge("C", "E");
 graph.addEdge("D", "E");
 graph.addEdge("E", "F");
 
+console.log(graph);
+
 // print graph
 graph.printGraph();
 
