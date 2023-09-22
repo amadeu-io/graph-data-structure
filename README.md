@@ -11,7 +11,7 @@ Graphs have many real world applications, like organizing users in a social netw
 
 ### Description 📚
 
-This repo implements a directed, unweighted Graph Data Structure in TypeScript, with some methods to modify and traverse the graph. A JavaScript version is also provided.
+This repo implements a directed, unweighted Graph Data Structure in TypeScript, with some methods to modify and traverse the graph. A typescript version is also provided.
 
 ### Resources Used 💡
 
@@ -51,13 +51,13 @@ To get started with the Graph data structure and its methods, follow these steps
 
 **1. Create a graph instance**
 
-```javascript
+```typescript
 const graph = new Graph();
 ```
 
 **2. Add nodes to the graph**
 
-```javascript
+```typescript
 graph.addNode("A");
 graph.addNode("B");
 graph.addNode("C");
@@ -68,7 +68,7 @@ graph.addNode("F");
 
 **3. Add edges**
 
-```javascript
+```typescript
 graph.addEdge("A", "B");
 graph.addEdge("B", "C");
 graph.addEdge("B", "D");
@@ -94,9 +94,9 @@ Graph {
 }
 ```
 
-For a cleaner representation, you can use `graph.printGraph()`:
+For a cleaner representation, we can use `graph.printGraph()`:
 
-```javascript
+```typescript
 A -> [B]
 B -> [C, D]
 C -> [E]
@@ -105,49 +105,43 @@ E -> [F]
 F -> []
 ```
 
-5. **Get neighbors of a node**
+**5. Get neighbors of a node**
 
-   ```javascript
-   console.log(graph.getNeighbors("B")); // [ 'C', 'D' ]
-   ```
+```typescript
+console.log(graph.getNeighbors("B")); // [ 'C', 'D' ]
+```
 
-6. **Check if an edge exists**
+**6. Let's try the `hasEdge()` method**
 
-   To check if an edge exists between two nodes, you can use the `hasEdge` method:
+```typescript
+console.log(graph.hasEdge("A", "B")); // true
+console.log(graph.hasEdge("A", "E")); // false
+```
 
-   ```javascript
-   console.log(graph.hasEdge("A", "B")); // true
-   console.log(graph.hasEdge("A", "E")); // false
-   ```
+**7. Check if the graph is connected**
 
-7. **Check if the graph is connected**
+```typescript
+console.log(graph.isConnected()); // true
+```
 
-   To check if the graph is connected, you can use the `isConnected` method:
+**8. Perform depth-first traversal**
 
-   ```javascript
-   console.log(graph.isConnected()); // true
-   ```
+Starting from node "A" and using a `print` callback function
 
-8. **Perform depth-first traversal (DFS)**
+```typescript
+graph.depthFirstTraversal("A", print); // A, B, C, E, F, D
+```
 
-   To perform a depth-first traversal of the graph, starting from a specific node and printing each node, you can use the `depthFirstTraversal` method:
+**9. Perform breadth-first traversal**
 
-   ```javascript
-   graph.depthFirstTraversal("A", print); // A, B, C, E, F, D
-   ```
+Starting from node "A" and using a `print` callback function
 
-9. **Perform breadth-first traversal (BFS)**
+```typescript
+graph.breadthFirstTraversal("A", print); // A, B, C, D, E, F
+```
 
-   To perform a breadth-first traversal of the graph, starting from a specific node and printing each node, you can use the `breadthFirstTraversal` method:
+**10. Find the shortest path between two nodes**
 
-   ```javascript
-   graph.breadthFirstTraversal("A", print); // A, B, C, D, E, F
-   ```
-
-10. **Find the shortest path between two nodes**
-
-    To find the shortest path between two nodes, you can use the `shortestPath` method:
-
-    ```javascript
-    console.log(graph.shortestPath("A", "F")); // A, B, C, E, F
-    ```
+```typescript
+console.log(graph.shortestPath("A", "F")); // A, B, C, E, F
+```
