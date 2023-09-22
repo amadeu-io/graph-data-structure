@@ -49,13 +49,13 @@ This repo implements a directed, unweighted Graph Data Structure in TypeScript, 
 
 To get started with the Graph data structure and its methods, follow these steps:
 
-1. **Create a graph instance**
+**1. Create a graph instance**
 
    ```javascript
    const graph = new Graph();
    ```
 
-2. **Add nodes to the graph**
+**2. Add nodes to the graph**
 
    ```javascript
    graph.addNode("A");
@@ -66,9 +66,7 @@ To get started with the Graph data structure and its methods, follow these steps
    graph.addNode("F");
    ```
 
-3. **Add edges to create a sample graph**
-
-   To create a sample graph with edges, you can use the `addEdge` method:
+**3. Add edges**
 
    ```javascript
    graph.addEdge("A", "B");
@@ -79,12 +77,32 @@ To get started with the Graph data structure and its methods, follow these steps
    graph.addEdge("E", "F");
    ```
 
-4. **Print the graph**
+ **4. Let's print the graph**
 
-   To print the graph, you can use the `printGraph` method:
+ If we `console.log(graph)` it looks like this
+
+ ```typescript
+Graph {
+  nodes: Map(6) {
+    'A' => [ 'B' ],
+    'B' => [ 'C', 'D' ],
+    'C' => [ 'E' ],
+    'D' => [ 'E' ],
+    'E' => [ 'F' ],
+    'F' => []
+  }
+}
+```
+
+For a cleaner representation, you can use `graph.printGraph()`:
 
    ```javascript
-   graph.printGraph();
+   A -> [B]
+B -> [C, D]
+C -> [E]
+D -> [E]
+E -> [F]
+F -> []
    ```
 
 5. **Get neighbors of a node**
