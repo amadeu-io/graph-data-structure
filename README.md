@@ -51,63 +51,61 @@ To get started with the Graph data structure and its methods, follow these steps
 
 **1. Create a graph instance**
 
-   ```javascript
-   const graph = new Graph();
-   ```
+```javascript
+const graph = new Graph();
+```
 
 **2. Add nodes to the graph**
 
-   ```javascript
-   graph.addNode("A");
-   graph.addNode("B");
-   graph.addNode("C");
-   graph.addNode("D");
-   graph.addNode("E");
-   graph.addNode("F");
-   ```
+```javascript
+graph.addNode("A");
+graph.addNode("B");
+graph.addNode("C");
+graph.addNode("D");
+graph.addNode("E");
+graph.addNode("F");
+```
 
 **3. Add edges**
 
-   ```javascript
-   graph.addEdge("A", "B");
-   graph.addEdge("B", "C");
-   graph.addEdge("B", "D");
-   graph.addEdge("C", "E");
-   graph.addEdge("D", "E");
-   graph.addEdge("E", "F");
-   ```
+```javascript
+graph.addEdge("A", "B");
+graph.addEdge("B", "C");
+graph.addEdge("B", "D");
+graph.addEdge("C", "E");
+graph.addEdge("D", "E");
+graph.addEdge("E", "F");
+```
 
- **4. Let's print the graph**
+**4. Print the graph**
 
- If we `console.log(graph)` it looks like this
+If we `console.log(graph)` it looks like this
 
- ```typescript
+```typescript
 Graph {
-  nodes: Map(6) {
-    'A' => [ 'B' ],
-    'B' => [ 'C', 'D' ],
-    'C' => [ 'E' ],
-    'D' => [ 'E' ],
-    'E' => [ 'F' ],
-    'F' => []
-  }
+ nodes: Map(6) {
+   'A' => [ 'B' ],
+   'B' => [ 'C', 'D' ],
+   'C' => [ 'E' ],
+   'D' => [ 'E' ],
+   'E' => [ 'F' ],
+   'F' => []
+ }
 }
 ```
 
 For a cleaner representation, you can use `graph.printGraph()`:
 
-   ```javascript
-   A -> [B]
+```javascript
+A -> [B]
 B -> [C, D]
 C -> [E]
 D -> [E]
 E -> [F]
 F -> []
-   ```
+```
 
 5. **Get neighbors of a node**
-
-   To get the neighbors of a specific node, you can use the `getNeighbors` method:
 
    ```javascript
    console.log(graph.getNeighbors("B")); // [ 'C', 'D' ]
