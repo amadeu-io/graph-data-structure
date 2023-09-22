@@ -11,7 +11,7 @@ Graphs have many real world applications, like organizing users in a social netw
 
 ### Description 📚
 
-This repo implements a directed Graph Data Structure in TypeScript, with some methods to modify and traverse the graph. A JavaScript version is also provided.
+This repo implements a directed, unweighted Graph Data Structure in TypeScript, with some methods to modify and traverse the graph. A JavaScript version is also provided.
 
 ### Resources Used 💡
 
@@ -19,10 +19,119 @@ This repo implements a directed Graph Data Structure in TypeScript, with some me
 
 ### Challenges 😅
 
+- The shortestPath() algorithm and the use of Maps, which is a new concept for me.
+
 ### Methods 🔧
 
-- ➕ `add(data)`: Adds a new child node as a child of a given node.
+- ➕ `addNode(node)`: Adds a new node to the graph.
 
-- ➖ `remove(data)`: Removes all child nodes of a given node with matching data.
+- 🌟 `addEdge(node1, node2)`: Adds edge between two nodes.
+
+- ❌ `removeNode(node)`: Removes a node from the graph.
+
+- ➖ `removeEdge(node1, node2)`: Remove edge (connection) between two nodes.
+
+- 📜 `printGraph()`: Utility method to print the entire graph.
+
+- 🌐 `getNeighbors(node)`: Retrieves all neighbor nodes of a given node.
+
+- ❓ `hasEdge(node1, node2)`: Checks if there is an edge (connection) between two nodes.
+
+- 🌐 `isConnected()`: Checks if the graph is connected.
+
+- 🚀 `depthFirstTraversal(startNode, visitCallback)`: Performs a depth-first traversal of the graph.
+
+- 🌊 `breadthFirstTraversal(startNode, visitCallback)`: Performs a breadth-first traversal of the graph.
+
+- 🛤️ `shortestPath(startNode, endNode)`: Finds the shortest path between two nodes in the graph.
 
 ### Usage 🖊️
+
+To get started with the Graph data structure and its methods, follow these steps:
+
+1. **Create a graph instance**
+
+   ```javascript
+   const graph = new Graph();
+   ```
+
+2. **Add nodes to the graph**
+
+   ```javascript
+   graph.addNode("A");
+   graph.addNode("B");
+   graph.addNode("C");
+   graph.addNode("D");
+   graph.addNode("E");
+   graph.addNode("F");
+   ```
+
+3. **Add edges to create a sample graph**
+
+   To create a sample graph with edges, you can use the `addEdge` method:
+
+   ```javascript
+   graph.addEdge("A", "B");
+   graph.addEdge("B", "C");
+   graph.addEdge("B", "D");
+   graph.addEdge("C", "E");
+   graph.addEdge("D", "E");
+   graph.addEdge("E", "F");
+   ```
+
+4. **Print the graph**
+
+   To print the graph, you can use the `printGraph` method:
+
+   ```javascript
+   graph.printGraph();
+   ```
+
+5. **Get neighbors of a node**
+
+   To get the neighbors of a specific node, you can use the `getNeighbors` method:
+
+   ```javascript
+   console.log(graph.getNeighbors("B")); // [ 'C', 'D' ]
+   ```
+
+6. **Check if an edge exists**
+
+   To check if an edge exists between two nodes, you can use the `hasEdge` method:
+
+   ```javascript
+   console.log(graph.hasEdge("A", "B")); // true
+   console.log(graph.hasEdge("A", "E")); // false
+   ```
+
+7. **Check if the graph is connected**
+
+   To check if the graph is connected, you can use the `isConnected` method:
+
+   ```javascript
+   console.log(graph.isConnected()); // true
+   ```
+
+8. **Perform depth-first traversal (DFS)**
+
+   To perform a depth-first traversal of the graph, starting from a specific node and printing each node, you can use the `depthFirstTraversal` method:
+
+   ```javascript
+   graph.depthFirstTraversal("A", print); // A, B, C, E, F, D
+   ```
+
+9. **Perform breadth-first traversal (BFS)**
+
+   To perform a breadth-first traversal of the graph, starting from a specific node and printing each node, you can use the `breadthFirstTraversal` method:
+
+   ```javascript
+   graph.breadthFirstTraversal("A", print); // A, B, C, D, E, F
+   ```
+
+10. **Find the shortest path between two nodes**
+
+    To find the shortest path between two nodes, you can use the `shortestPath` method:
+
+    ```javascript
+    console.log(graph.shortestPath("A", "F")); // A, B, C, E, F
+    ```
