@@ -199,13 +199,14 @@ class Graph {
   }
 
   // finds the shortest path between two nodes
+  // this method performs a bfs and keeps track of the followed path in a parent - node map
   shortestPath(startNode, endNode) {
     // if either the startNode or endNode doesn't exist, return null
     if (!this.nodes.has(startNode) || !this.nodes.has(endNode)) {
       return null;
     }
 
-    // create a queue to perform bfs
+    // queue will be used to perform bfs
     const queue = [];
 
     // create a map to track the node - parent map for each node in the path
@@ -228,10 +229,10 @@ class Graph {
 
         let node = endNode;
 
-        // iterate through the parent map and reconstruct entire
-        // path from end to beginning
+        // reconstructs the entire node - parent map path and stores in path array, which
+        // is the shortest path
         while (node !== null) {
-          // add node to the end of the path
+          // unshift adds node to the beginning of the array
           path.unshift(node);
 
           // set node variable to be the parent of the node
@@ -249,8 +250,7 @@ class Graph {
         // has(key) checks if a key exists in the map parentMap, if it doesn't
         // it means that neighbor hasn't been visited, and the if block executes
         if (!parentMap.has(neighbor)) {
-          // navigate to that neighbor, by pushing it into the queue
-          // and update the parentMap
+          // visit that neighbor, by pushing it into the queue and update the parentMap as follows:
           // neighbor -> new visited node
           // currentNode -> node the neighbor is visited from, which becomes the parent
           parentMap.set(neighbor, currentNode);
@@ -291,5 +291,5 @@ graph.addEdge("E", "F");
 // print graph
 graph.printGraph();
 
-// find shortest path
+// shortest path
 console.log(graph.shortestPath("A", "F"));
