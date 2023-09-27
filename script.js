@@ -27,26 +27,6 @@ class Graph {
     }
   }
 
-  // remove a node from the graph
-  removeNode(nodeToRemove) {
-    // find & remove the nodeToRemove
-    // delete(key): removes a key-value pair from the map
-    if (this.nodes.has(nodeToRemove)) {
-      this.nodes.delete(nodeToRemove);
-
-      // remove any edges connected to the node
-      // loop iterates over the whole map's entries (nodes)
-      // at each iteration, node is the key and neighbors is the value of each node
-      for (const [node, neighbors] of this.nodes.entries()) {
-        if (neighbors.includes(nodeToRemove)) {
-          this.removeEdge(node, nodeToRemove);
-        }
-      }
-    } else {
-      console.log("Node not found in the graph.");
-    }
-  }
-
   // remove edge (connection) between node1 and node2
   removeEdge(node1, node2) {
     if (this.nodes.has(node1)) {
@@ -61,6 +41,26 @@ class Graph {
         neighbors.splice(index, 1);
       } else {
         console.log("Edge not found between the nodes.");
+      }
+    } else {
+      console.log("Node not found in the graph.");
+    }
+  }
+
+  // remove a node from the graph
+  removeNode(nodeToRemove) {
+    // find & remove the nodeToRemove
+    // delete(key): removes a key-value pair from the map
+    if (this.nodes.has(nodeToRemove)) {
+      this.nodes.delete(nodeToRemove);
+
+      // remove any edges connected to the node
+      // loop iterates over the whole map's entries (nodes)
+      // at each iteration, node is the key and neighbors is the value of each node
+      for (const [node, neighbors] of this.nodes.entries()) {
+        if (neighbors.includes(nodeToRemove)) {
+          this.removeEdge(node, nodeToRemove);
+        }
       }
     } else {
       console.log("Node not found in the graph.");
