@@ -66,6 +66,17 @@ class Graph<T> {
       console.log(`${node} -> [${neighborString}]`);
     }
   }
+
+  // returns an array of a node's neighbors (value) of a given node, if it exists
+  getNeighbors(node: T): T[] {
+    if (this.nodes.has(node)) {
+      const neighbors = this.nodes.get(node) as T[];
+      return neighbors;
+    } else {
+      console.log("Node not found in the graph.");
+      return [];
+    }
+  }
 }
 
 // example usage:
@@ -88,5 +99,7 @@ graph.addEdge("D", "E");
 graph.addEdge("E", "F");
 
 graph.printGraph();
+
+console.log(graph.getNeighbors("A"));
 
 export {};
