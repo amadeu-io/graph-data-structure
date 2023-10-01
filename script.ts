@@ -26,7 +26,7 @@ class Graph<T> {
     }
   }
 
-  // remove edge (connection) between node1 and node2
+  // remove edge between two nodes
   removeEdge(node1: T, node2: T): void {
     if (this.nodes.has(node1)) {
       const neighbors = this.nodes.get(node1) as T[];
@@ -44,6 +44,44 @@ class Graph<T> {
       console.log("Node not found in the graph.");
     }
   }
+
+  // remove a node from the graph
+  removeNode(nodeToRemove: T): void {
+    if (this.nodes.has(nodeToRemove)) {
+      this.nodes.delete(nodeToRemove);
+
+      for (const [node, neighbors] of this.nodes.entries()) {
+        if (neighbors.includes(nodeToRemove)) {
+          this.removeEdge(node, nodeToRemove);
+        }
+      }
+    } else {
+      console.log("Node not found in the graph.");
+    }
+  }
 }
+
+// example usage:
+const graph = new Graph();
+
+// add nodes to the graph
+graph.addNode("A");
+graph.addNode("B");
+graph.addNode("C");
+graph.addNode("D");
+graph.addNode("E");
+graph.addNode("F");
+
+// add edges to create a sample graph
+graph.addEdge("A", "B");
+graph.addEdge("B", "C");
+graph.addEdge("B", "D");
+graph.addEdge("C", "E");
+graph.addEdge("D", "E");
+graph.addEdge("E", "F");
+
+graph.removeNode("A");
+
+console.log(graph);
 
 export {};
