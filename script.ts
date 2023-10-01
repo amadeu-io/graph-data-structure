@@ -59,6 +59,13 @@ class Graph<T> {
       console.log("Node not found in the graph.");
     }
   }
+
+  printGraph(): void {
+    for (const [node, neighbors] of this.nodes.entries()) {
+      const neighborString: string = neighbors.join(", ");
+      console.log(`${node} -> [${neighborString}]`);
+    }
+  }
 }
 
 // example usage:
@@ -80,8 +87,6 @@ graph.addEdge("C", "E");
 graph.addEdge("D", "E");
 graph.addEdge("E", "F");
 
-graph.removeNode("A");
-
-console.log(graph);
+graph.printGraph();
 
 export {};
