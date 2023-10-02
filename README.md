@@ -127,7 +127,7 @@ console.log(graph.isConnected()); // true
 **8. Perform depth-first traversal**
 
 Starting from node "A" and using a `print` callback function
-
+  
 ```typescript
 graph.depthFirstTraversal("A", print); // A, B, C, E, F, D
 ```

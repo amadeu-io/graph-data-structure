@@ -77,6 +77,18 @@ class Graph<T> {
       return [];
     }
   }
+
+  // checks if there's an edge (connection) between two nodes
+  hasEdge(node1: T, node2: T): boolean {
+    if (this.nodes.has(node1)) {
+      return this.nodes.get(node1)!.includes(node2);
+      // ! is the non-null assertion operator,
+      // asserts that the result of .get(node1) is not null or undefined
+    } else {
+      console.log("Node not found in the graph.");
+      return false;
+    }
+  }
 }
 
 // example usage:
@@ -100,6 +112,6 @@ graph.addEdge("E", "F");
 
 graph.printGraph();
 
-console.log(graph.getNeighbors("A"));
+console.log(graph.hasEdge("A", "B"));
 
 export {};
