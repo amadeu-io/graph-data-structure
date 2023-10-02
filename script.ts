@@ -83,7 +83,7 @@ class Graph<T> {
     if (this.nodes.has(node1)) {
       return this.nodes.get(node1)!.includes(node2);
       // ! is the non-null assertion operator,
-      // asserts that the result of .get(node1) is not null or undefined
+      // which asserts that the result of .get(node1) is not null or undefined
     } else {
       console.log("Node not found in the graph.");
       return false;
