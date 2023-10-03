@@ -89,6 +89,37 @@ class Graph<T> {
       return false;
     }
   }
+
+  // perform a depth-first traversal from a starting node
+  depthFirstTraversal(startNode: T, visitCallback: (node: T) => void): void {
+    const visited = new Set<T>();
+
+    // helper recursive function that traverses the graph
+    const dfs = (node: T): void => {
+      visited.add(node);
+
+      visitCallback(node);
+
+      const neighbors: T[] = this.getNeighbors(node);
+
+      for (const neighbor of neighbors) {
+        if (!visited.has(neighbor)) {
+          dfs(neighbor);
+        }
+      }
+    };
+
+    if (this.nodes.has(startNode)) {
+      dfs(startNode);
+    } else {
+      console.log("Node not found in the graph.");
+    }
+  }
+}
+
+// print function
+function print<T>(node: T): void {
+  console.log(node);
 }
 
 // example usage:
@@ -112,6 +143,7 @@ graph.addEdge("E", "F");
 
 graph.printGraph();
 
-console.log(graph.hasEdge("A", "B"));
+// depth first traversal (dfs)
+graph.depthFirstTraversal("A", print); // A, B, C, E, F, D
 
 export {};
