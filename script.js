@@ -95,31 +95,6 @@ class Graph {
     }
   }
 
-  // check if the graph is connected (no isolated nodes)
-  isConnected() {
-    // edge case: if the graph is empty, consider it connected
-    if (this.nodes.size === 0) {
-      return true;
-    }
-
-    // pick the first node as a starting point
-    const startNode = this.nodes.keys().next().value;
-
-    // keeps track of visited nodes
-    const visited = new Set();
-
-    // perform a breadth-first traversal starting from the first node & add to visited
-    this.breadthFirstTraversal(startNode, (node) => {
-      visited.add(node);
-    });
-
-    // the traversal can only visit the nodes that are connected
-    // so the only way that the graph is connected is if the traversal has visited
-    // all nodes present in the graph (the size of the nodes set is the same as
-    // the size of the visited set)
-    return visited.size === this.nodes.size;
-  }
-
   // perform a depth first traveral from a starting node
   depthFirstTraversal(startNode, visitCallback) {
     // a set is similar to an array, but it contains only unique values
@@ -196,6 +171,31 @@ class Graph {
     } else {
       console.log("Node not found in the graph.");
     }
+  }
+
+  // check if the graph is connected (no isolated nodes)
+  isConnected() {
+    // edge case: if the graph is empty, consider it connected
+    if (this.nodes.size === 0) {
+      return true;
+    }
+
+    // pick the first node as a starting point
+    const startNode = this.nodes.keys().next().value;
+
+    // keeps track of visited nodes
+    const visited = new Set();
+
+    // perform a breadth-first traversal starting from the first node & add to visited
+    this.breadthFirstTraversal(startNode, (node) => {
+      visited.add(node);
+    });
+
+    // the traversal can only visit the nodes that are connected
+    // so the only way that the graph is connected is if the traversal has visited
+    // all nodes present in the graph (the size of the nodes set is the same as
+    // the size of the visited set)
+    return visited.size === this.nodes.size;
   }
 
   // finds the shortest path between two nodes
