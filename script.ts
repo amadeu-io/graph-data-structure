@@ -143,6 +143,21 @@ class Graph<T> {
       console.log("Node not found in the graph.");
     }
   }
+
+  // check if the graph is connected (no isolated nodes)
+  isConnected(): boolean {
+    if (this.nodes.size === 0) {
+      return true;
+    }
+
+    const startNode = this.nodes.keys().next().value as T;
+    const visited: Set<T> = new Set<T>();
+    this.breadthFirstTraversal(startNode, (node) => {
+      visited.add(node);
+    });
+
+    return visited.size === this.nodes.size;
+  }
 }
 
 // print function
@@ -173,5 +188,8 @@ graph.printGraph();
 
 // breadth first traversal (bfs)
 graph.breadthFirstTraversal("A", print); // A, B, C, D, E, F
+
+// is connected
+console.log(graph.isConnected()); // true
 
 export {};
