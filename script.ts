@@ -92,7 +92,7 @@ class Graph<T> {
 
   // perform a depth-first traversal from a starting node
   depthFirstTraversal(startNode: T, visitCallback: (node: T) => void): void {
-    const visited = new Set<T>();
+    const visited: Set<T> = new Set<T>();
 
     // helper recursive function that traverses the graph
     const dfs = (node: T): void => {
@@ -111,6 +111,34 @@ class Graph<T> {
 
     if (this.nodes.has(startNode)) {
       dfs(startNode);
+    } else {
+      console.log("Node not found in the graph.");
+    }
+  }
+
+  // perform a breath first traveral from a starting node
+  breadthFirstTraversal(startNode: T, visitCallback: (node: T) => void): void {
+    const visited: Set<T> = new Set<T>();
+    const queue: T[] = [];
+
+    // if the starting node exists, start the traversal
+    if (this.nodes.has(startNode)) {
+      queue.push(startNode);
+      visited.add(startNode);
+
+      // loop that iterates through queue, as long as there are items on it
+      while (queue.length > 0) {
+        const currentNode = queue.shift() as T; // we know for sure .shift() can't return undefined
+        visitCallback(currentNode);
+        const neighbors: T[] = this.getNeighbors(currentNode);
+
+        for (const neighbor of neighbors) {
+          if (!visited.has(neighbor)) {
+            queue.push(neighbor);
+            visited.add(neighbor);
+          }
+        }
+      }
     } else {
       console.log("Node not found in the graph.");
     }
@@ -143,7 +171,7 @@ graph.addEdge("E", "F");
 
 graph.printGraph();
 
-// depth first traversal (dfs)
-graph.depthFirstTraversal("A", print); // A, B, C, E, F, D
+// breadth first traversal (bfs)
+graph.breadthFirstTraversal("A", print); // A, B, C, D, E, F
 
 export {};
