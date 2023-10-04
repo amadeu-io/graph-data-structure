@@ -19,7 +19,7 @@ This repo implements a directed, unweighted Graph Data Structure in TypeScript, 
 
 ### Challenges 😅
 
-- The shortestPath() algorithm and the use of Maps, which is a new concept for me.
+- The `shortestPath()` algorithm and the use of Maps, which is a new concept for me.
 
 ### Methods 🔧
 
