@@ -1,3 +1,5 @@
+// this file contains more comments about the logic
+
 class Graph {
   constructor() {
     // every graph that's created using the Graph class will be an object with a key of nodes
