@@ -225,8 +225,28 @@ graph.addEdge("C", "E");
 graph.addEdge("D", "E");
 graph.addEdge("E", "F");
 
+console.log(graph);
+
+// print graph
 graph.printGraph();
 
+// get neighbors
+console.log(graph.getNeighbors("B")); // [ 'C', 'D' ]
+
+// has edge
+console.log(graph.hasEdge("A", "B")); // true
+console.log(graph.hasEdge("A", "E")); // false
+
+// is connected
+console.log(graph.isConnected()); // true
+
+// depth first traversal (dfs)
+graph.depthFirstTraversal("A", print); // A, B, C, E, F, D
+
+// breadth first traversal (bfs)
+graph.breadthFirstTraversal("A", print); // A, B, C, D, E, F
+
+// shortest path
 console.log(graph.shortestPath("A", "F")); // A, B, C, E, F
 
 export {};
