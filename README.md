@@ -9,6 +9,16 @@ A data graph is a data structure used to represent and model relationships betwe
 
 Graphs can be directed, where each edge has a direction, or indirected, where they do not. Graphs can also be unweighted, or weighted. In an unweighted graph, each edge between nodes has the same "weight" or "cost," often represented as 1. In a weighted graph, each edge is assigned a numerical value or weight that represents some quantitative measure of the relationship or the cost associated with traversing that edge.
 
+#### Direction of a graph
+
+- **Directed:** Each edge has a direction.
+- **Indirected:** Each edge doesn't have a direction.
+
+#### Weight of a graph
+
+- **Weighted:** Each edge is assigned a numerical value or weight.
+- **Unweighted:** Each edge between nodes has the same weight, often represented as 1.
+
 Graphs have many real world applications, like organizing users in a social network, modeling user-item interactions for personalized recommendations, analizing website structures and page relationships, mapping road systems, flight routes, public transportation etc.
 
 ### Description 📚
