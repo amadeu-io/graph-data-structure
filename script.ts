@@ -158,6 +158,47 @@ class Graph<T> {
 
     return visited.size === this.nodes.size;
   }
+
+  // finds the shortest path between two nodes
+  shortestPath(startNode: T, endNode: T): T[] | null {
+    if (!this.nodes.has(startNode) || !this.nodes.has(endNode)) {
+      return null;
+    }
+
+    const queue: T[] = [];
+    const parentMap: Map<T, T | null> = new Map();
+    queue.push(startNode);
+    parentMap.set(startNode, null);
+
+    // loop that performs a bfs and keeps track of a node - parent map throughout the path
+    while (queue.length > 0) {
+      const currentNode = queue.shift() as T;
+
+      if (currentNode === endNode) {
+        const path: T[] = [];
+        let node: T | null = endNode;
+
+        while (node !== null) {
+          path.unshift(node);
+          node = parentMap.get(node) as T;
+        }
+
+        return path;
+      }
+
+      const neighbors: T[] = this.getNeighbors(currentNode);
+
+      // iterate through all neighbors
+      for (const neighbor of neighbors) {
+        if (!parentMap.has(neighbor)) {
+          parentMap.set(neighbor, currentNode);
+          queue.push(neighbor);
+        }
+      }
+    }
+
+    return null;
+  }
 }
 
 // print function
@@ -186,10 +227,6 @@ graph.addEdge("E", "F");
 
 graph.printGraph();
 
-// breadth first traversal (bfs)
-graph.breadthFirstTraversal("A", print); // A, B, C, D, E, F
-
-// is connected
-console.log(graph.isConnected()); // true
+console.log(graph.shortestPath("A", "F")); // A, B, C, E, F
 
 export {};
