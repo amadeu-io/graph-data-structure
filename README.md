@@ -11,7 +11,7 @@ Graphs have many real world applications, like organizing users in a social netw
 
 ### Description 📚
 
-This repo implements a directed, unweighted Graph Data Structure in TypeScript, with some methods to modify and traverse the graph. A typescript version is also provided.
+This repo implements a directed, unweighted Graph Data Structure in TypeScript, with some methods to modify and traverse the graph. A JavaScript version with more comments about the logic is also provided.
 
 ### Resources Used 💡
 
@@ -127,7 +127,7 @@ console.log(graph.isConnected()); // true
 **8. Perform depth-first traversal**
 
 Starting from node "A" and using a `print` callback function
-  
+
 ```typescript
 graph.depthFirstTraversal("A", print); // A, B, C, E, F, D
 ```
