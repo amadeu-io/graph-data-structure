@@ -7,12 +7,12 @@
 
 A data graph is a data structure used to represent and model relationships between various pieces of data. It consists of nodes and edges, where nodes represent data points, and edges represent the connections between them. A graph can be classified by the behaviour of it's edges as follows:
 
-##### Direction
+#### Direction
 
 - **Directed:** Each edge has a direction.
 - **Indirected:** Each edge doesn't have a direction.
 
-##### Weight
+#### Weight
 
 - **Weighted:** Each edge is assigned a numerical value or weight.
 - **Unweighted:** Each edge between nodes has the same weight, often represented as 1.
