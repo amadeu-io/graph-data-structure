@@ -5,7 +5,7 @@
 
 ### About 📖
 
-A data graph is a data structure used to represent and model relationships between various pieces of data. It consists of nodes and edges, where nodes represent data points, and edges represent the connections between them. A graph can be classified by the characteristics of it's edges as follows:
+A data graph is a data structure used to represent and model relationships between various pieces of data. It consists of nodes and edges, where nodes represent data points, and edges represent the connections between them. A graph can be classified by the characteristics of it's edges as follows ⬇️
 
  #### Direction
 
