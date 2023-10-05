@@ -15,7 +15,7 @@ A data graph is a data structure used to represent and model relationships betwe
  #### Weight
 
  - **Weighted:** Each edge is assigned a numerical value or weight.
- - **Unweighted:** Each edge between nodes has the same weight, often represented as 1.
+ - **Unweighted:** Each edge has the same weight, often represented as 1.
 
 Graphs have many real world applications, like organizing users in a social network, modeling user-item interactions for personalized recommendations, analizing website structures and page relationships, mapping road systems, flight routes, public transportation etc.
 
